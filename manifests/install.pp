@@ -4,15 +4,6 @@
 #
 class vault::install {
 
-  if $vault::data_dir {
-    file { $vault::data_dir:
-      ensure => 'directory',
-      owner  => $vault::user,
-      group  => $vault::group,
-      mode   => '0755',
-    }
-  }
-
   if $vault::install_method == 'url' {
 
     if $::operatingsystem != 'darwin' {
@@ -53,12 +44,6 @@ class vault::install {
 
     package { $vault::package_name:
       ensure => $vault::package_ensure,
-    }
-
-    if $vault::ui_dir {
-      package { $vault::ui_package_name:
-        ensure => $vault::ui_package_ensure,
-      }
     }
 
   } else {

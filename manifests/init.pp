@@ -64,11 +64,8 @@ class vault (
   $manage_service    = true,
   $init_style        = $vault::params::init_style,
 ) inherits vault::params {
-
-  # with no arguments, we simply install vault.
-  anchor {'vault_first': } ->
-  class { 'vault::install': } ->
-  anchor {'vault_last': }
+  class { 'vault::install':
+  }
 
   # but if $backend is set, assume we want to run the service.
   if $backend {
@@ -88,16 +85,11 @@ class vault (
     )
     validate_hash($config_hash_real)
 
-    if $config_hash_real['data_dir'] {
-      $data_dir = $config_hash_real['data_dir']
-    }
-
     Class['vault::install'] ->
     class { 'vault::config':
       config_hash => $config_hash_real,
       purge       => $purge_config_dir,
     } ~>
-    class { 'vault::service': } ->
-    Anchor['vault_last']
+    class { 'vault::service': }
   }
 }
