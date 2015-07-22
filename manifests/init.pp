@@ -46,6 +46,7 @@ class vault (
   $user              = 'root',
   $manage_group      = false,
   $group             = 'root',
+  $manage_config_dir = true,
   $purge_config_dir  = true,
   $bin_dir           = '/usr/local/bin',
   $arch              = $vault::params::arch,
@@ -69,6 +70,7 @@ class vault (
 
   # but if $backend is set, assume we want to run the service.
   if $backend {
+    validate_bool($manage_config_dir)
     validate_bool($purge_config_dir)
     validate_bool($manage_user)
     validate_bool($manage_service)

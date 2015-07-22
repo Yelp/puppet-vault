@@ -79,11 +79,15 @@ class vault::config(
     }
   }
 
-  file { $vault::config_dir:
-    ensure  => 'directory',
-    purge   => $purge,
-    recurse => $purge,
-  } ->
+  if $::vault::manage_config_dir {
+    file { $vault::config_dir:
+      ensure  => 'directory',
+      purge   => $purge,
+      recurse => $purge,
+      force   => true,
+    }
+  }
+
   file { 'vault config.json':
     path    => "${vault::config_dir}/config.json",
     content => vault_sorted_json($config_hash),
