@@ -12,6 +12,5 @@ env GOMAXPROCS=<%= scope.lookupvar("::processorcount") %>
 script
     # read settings like GOMAXPROCS from "/etc/default/vault", if available.
     [ -e "/etc/default/vault" ] && . "/etc/default/vault"
-
-    exec vault server -config "$CONFIG"
+    exec vault server -config '<%= scope.lookupvar('vault::config_dir') %>'
 end script
