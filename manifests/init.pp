@@ -76,8 +76,6 @@ class vault (
 
   # but if $backend is set, assume we want to run the service.
   if $backend {
-    validate_bool($manage_config_dir)
-    validate_bool($purge_config_dir)
     validate_bool($manage_user)
     validate_bool($manage_service)
     validate_hash($backend)
@@ -96,7 +94,6 @@ class vault (
     Class['vault::install'] ->
     class { 'vault::config':
       config_hash => $config_hash_real,
-      purge       => $purge_config_dir,
     } ~>
     class { 'vault::service': }
   }

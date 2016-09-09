@@ -7,12 +7,8 @@
 # [*config_hash*]
 #   Hash for vault to be deployed as JSON
 #
-# [*purge*]
-#   Bool. If set will make puppet remove stale config files.
-#
 class vault::config(
   $config_hash,
-  $purge = true,
 ) {
 
   if $vault::init_style {
