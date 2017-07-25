@@ -8,10 +8,10 @@ respawn limit 10 10
 kill timeout 10
 
 env GOMAXPROCS=<%= scope.lookupvar("::processorcount") %>
-env CONFFILE='<%= scope.lookupvar('vault::config_dir') %>/config.json'
+env CONFIG='<%= scope.lookupvar('vault::config_dir') %>/config.json'
 
 script
     # read settings like GOMAXPROCS from "/etc/default/vault", if available.
     [ -e "/etc/default/vault" ] && . "/etc/default/vault"
-    exec vault server -config $CONFFILE
+    exec vault server -config "$CONFIG" <%= scope.lookupvar('vault::extra_options').shelljoin %>
 end script
