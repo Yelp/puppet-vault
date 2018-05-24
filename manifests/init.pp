@@ -70,9 +70,9 @@ class vault (
   $real_download_url    = pick($download_url, "${download_url_base}${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
 
   # with no arguments, we simply install vault.
-  anchor {'vault_first': } ->
-  class { 'vault::install': } ->
-  anchor {'vault_last': }
+  anchor {'vault_first': }
+  -> class { 'vault::install': }
+  -> anchor {'vault_last': }
 
   # but if $backend is set, assume we want to run the service.
   if $backend {
@@ -91,10 +91,10 @@ class vault (
     )
     validate_hash($config_hash_real)
 
-    Class['vault::install'] ->
-    class { 'vault::config':
+    Class['vault::install']
+    -> class { 'vault::config':
       config_hash => $config_hash_real,
-    } ~>
-    class { 'vault::service': }
+    }
+    ~> class { 'vault::service': }
   }
 }

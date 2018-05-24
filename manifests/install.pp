@@ -11,12 +11,12 @@ class vault::install {
     }
     staging::file { 'vault.zip':
       source => $vault::real_download_url,
-    } ->
-    staging::extract { 'vault.zip':
+    }
+    -> staging::extract { 'vault.zip':
       target  => $vault::bin_dir,
       creates => "${vault::bin_dir}/vault",
-    } ->
-    file { "${vault::bin_dir}/vault":
+    }
+    -> file { "${vault::bin_dir}/vault":
       owner => 'root',
       group => 0, # 0 instead of root because OS X uses "wheel".
       mode  => '0555',
