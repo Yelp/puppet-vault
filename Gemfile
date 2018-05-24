@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 group :test do
-  gem "rake"
+  gem 'rake', '< 11.0'
   gem 'beaker', '~> 1.11.0'
   gem "puppet-blacksmith"
   gem "puppet", '~> 3.7.0'

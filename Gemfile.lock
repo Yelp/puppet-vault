@@ -1,24 +1,28 @@
 GIT
   remote: https://github.com/rodjek/rspec-puppet.git
-  revision: 81ea952031acb2c7c8f5f6a34712be613a1eeca7
+  revision: 3a49432ab2dedd998ee4a7b002022d969dd491a0
   specs:
-    rspec-puppet (2.3.0)
+    rspec-puppet (2.6.11)
       rspec
 
 GEM
   remote: http://rubygems.org/
   specs:
-    CFPropertyList (2.3.1)
-    addressable (2.3.8)
+    CFPropertyList (2.3.6)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
+    archive-tar-minitar (0.6.1)
+      minitar (~> 0.6)
+      minitar-cli (~> 0.6)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (1.64.0)
-      aws-sdk-v1 (= 1.64.0)
-    aws-sdk-v1 (1.64.0)
+    aws-sdk (1.67.0)
+      aws-sdk-v1 (= 1.67.0)
+    aws-sdk-v1 (1.67.0)
       json (~> 1.4)
-      nokogiri (>= 1.4.4)
+      nokogiri (~> 1)
     beaker (1.11.2)
       aws-sdk (~> 1.38)
       blimpy (~> 0.6)
@@ -42,29 +46,30 @@ GEM
       fog
       minitar
       thor
-    builder (3.2.2)
-    diff-lcs (1.2.5)
-    docker-api (1.21.4)
-      excon (>= 0.38.0)
+    builder (3.2.3)
+    diff-lcs (1.3)
+    docker-api (1.10.11)
+      archive-tar-minitar
+      excon (>= 0.28)
       json
-    domain_name (0.5.24)
+    domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
-    excon (0.45.3)
+    excon (0.31.0)
     extlib (0.9.16)
-    facter (1.7.6)
-    faraday (0.9.1)
+    facter (2.5.1)
+    faraday (0.15.2)
       multipart-post (>= 1.2, < 3)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
-    fog (1.11.1)
+    fog (1.19.0)
       builder
-      excon (~> 0.20)
+      excon (~> 0.31.0)
       formatador (~> 0.2.0)
-      json (~> 1.7)
       mime-types
+      multi_json (~> 1.0)
       net-scp (~> 1.1)
       net-ssh (>= 2.1.3)
-      nokogiri (~> 1.5.0)
+      nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.5)
     google-api-client (0.7.1)
@@ -78,56 +83,61 @@ GEM
       retriable (>= 1.4)
       signet (>= 0.5.0)
       uuidtools (>= 2.1.0)
+    hashie (3.5.7)
     hiera (1.3.4)
       json_pure
     hiera-puppet-helper (1.0.1)
-    highline (1.7.2)
-    http-cookie (1.0.2)
+    highline (1.7.10)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
     inifile (2.0.2)
-    json (1.8.2)
-    json_pure (1.8.2)
-    jwt (1.5.0)
+    json (1.8.6)
+    json_pure (2.1.0)
+    jwt (2.1.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     metaclass (0.0.4)
     mime-types (1.25.1)
-    minitar (0.5.4)
-    mocha (1.1.0)
+    minitar (0.6.1)
+    minitar-cli (0.6.1)
+      minitar (~> 0.6.0)
+      powerbar (~> 1.0)
+    mocha (1.5.0)
       metaclass (~> 0.0.1)
-    multi_json (1.11.0)
+    multi_json (1.13.1)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (2.9.2)
-    netrc (0.10.3)
+    net-ssh (2.9.4)
+    netrc (0.11.0)
     nokogiri (1.5.10)
+    powerbar (1.0.18)
+      hashie (>= 1.1.0)
+    public_suffix (3.0.2)
     puppet (3.7.5)
       facter (> 1.6, < 3)
       hiera (~> 1.0)
       json_pure
-    puppet-blacksmith (3.3.1)
-      puppet (>= 2.7.16)
-      rest-client
-    puppet-lint (1.1.0)
-    puppet-syntax (2.0.0)
+    puppet-blacksmith (4.1.2)
+      rest-client (~> 2.0)
+    puppet-lint (2.3.5)
+    puppet-syntax (2.4.1)
       rake
-    puppetlabs_spec_helper (0.10.3)
-      mocha
-      puppet-lint
-      puppet-syntax
-      rake
-      rspec-puppet
-    rake (10.4.2)
+    puppetlabs_spec_helper (2.7.0)
+      mocha (~> 1.0)
+      puppet-lint (~> 2.0)
+      puppet-syntax (~> 2.0)
+      rspec-puppet (~> 2.0)
+    rake (10.5.0)
     rbvmomi (1.8.1)
       builder
       nokogiri (>= 1.4.1)
       trollop
-    rest-client (1.8.0)
+    rest-client (2.0.2)
       http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
-    retriable (2.0.2)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    retriable (3.1.1)
     rspec (2.99.0)
       rspec-core (~> 2.99.0)
       rspec-expectations (~> 2.99.0)
@@ -138,7 +148,7 @@ GEM
     rspec-its (1.0.1)
       rspec-core (>= 2.99.0.beta1)
       rspec-expectations (>= 2.99.0.beta1)
-    rspec-mocks (2.99.3)
+    rspec-mocks (2.99.4)
     ruby-hmac (0.4.0)
     serverspec (1.16.0)
       highline
@@ -146,18 +156,17 @@ GEM
       rspec (~> 2.99)
       rspec-its
       specinfra (~> 1.27)
-    signet (0.6.0)
+    signet (0.8.1)
       addressable (~> 2.3)
-      extlib (~> 0.9)
       faraday (~> 0.9)
-      jwt (~> 1.0)
+      jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
     specinfra (1.27.5)
-    thor (0.19.1)
+    thor (0.20.0)
     trollop (2.1.2)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.5)
     uuidtools (2.1.5)
 
 PLATFORMS
@@ -173,5 +182,8 @@ DEPENDENCIES
   puppet-lint
   puppet-syntax
   puppetlabs_spec_helper
-  rake
+  rake (< 11.0)
   rspec-puppet!
+
+BUNDLED WITH
+   1.16.2
