@@ -1,3 +1,4 @@
+<% require 'shellwords' -%>
 # Vault Server (Upstart unit)
 description "Vault Server"
 start on (local-filesystems and net-device-up IFACE!=lo)
