@@ -2,7 +2,6 @@ source "http://rubygems.org"
 
 group :test do
   gem 'rake', '< 11.0'
-  gem 'beaker', '~> 1.11.0'
   gem "puppet-blacksmith"
   gem "puppet", '~> 3.7.0'
   gem "puppet-lint"
@@ -14,5 +13,4 @@ end
 
 group :development do
   gem 'json'
-  gem 'beaker-rspec'
 end
