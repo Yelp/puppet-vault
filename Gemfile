@@ -1,16 +1,19 @@
-source "http://rubygems.org"
+source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
-group :test do
-  gem 'rake', '< 11.0'
-  gem "puppet-blacksmith"
-  gem "puppet", '~> 3.7.0'
-  gem "puppet-lint"
-  gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
-  gem "puppet-syntax"
-  gem "puppetlabs_spec_helper"
-  gem "hiera-puppet-helper"
+group :tests do
+  gem 'puppetlabs_spec_helper'
+  gem 'hiera-puppet-helper'
 end
 
-group :development do
-  gem 'json'
+group :system_tests do
+  gem 'beaker'
+  gem 'beaker-docker'
+  gem 'beaker-rspec'
+  gem 'beaker-puppet_install_helper'
+end
+
+if puppetversion = ENV['PUPPET_GEM_VERSION']
+    gem 'puppet', puppetversion, :require => false
+else
+    gem 'puppet', '~> 4.5.0', :require => false
 end

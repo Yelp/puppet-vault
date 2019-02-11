@@ -15,5 +15,4 @@ RSpec.configure do |c|
   c.before(:each) do
     Puppet::Indirector::Hiera.stub(:hiera => hiera_stub)
   end
-
 end
