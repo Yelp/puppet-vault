@@ -5,8 +5,10 @@ describe 'vault' do
     c.default_facts = {
       :architecture    => 'x86_64',
       :operatingsystem => 'Ubuntu',
+      :osfamily        => 'Debian',
       :lsbdistrelease  => '10.04',
       :kernel          => 'Linux',
+      :staging_http_get => 'curl'
     }
   end
 
