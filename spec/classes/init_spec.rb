@@ -79,4 +79,32 @@ describe 'vault' do
     }}
     it { should contain_file('/etc/init/vault.conf').with_content(%r{server -config "\$CONFIG" foo bar baz\\ baz\\ baz})}
   end
+
+  RSpec.shared_examples 'upstart' do
+    it { should contain_file('/etc/init/vault.conf') }
+    it { should_not contain_file('/lib/systemd/system/vault.service') }
+  end
+
+  RSpec.shared_examples 'systemd' do
+    it { should_not contain_file('/etc/init/vault.conf') }
+    it { should contain_file('/lib/systemd/system/vault.service') }
+  end
+
+  context 'on Trusty (14.04)' do
+    let(:facts) {{ :lsbdistrelease => '14.04' }}
+    let(:params) {{ :backend => {}, :listener => {} }}
+    it_behaves_like 'upstart'
+  end
+
+  context 'on Xenial (16.04)' do
+    let(:facts) {{ :lsbdistrelease => '16.04' }}
+    let(:params) {{ :backend => {}, :listener => {} }}
+    it_behaves_like 'systemd'
+  end
+
+  context 'on Bionic (18.04)' do
+    let(:facts) {{ :lsbdistrelease => '18.04' }}
+    let(:params) {{ :backend => {}, :listener => {} }}
+    it_behaves_like 'systemd'
+  end
 end

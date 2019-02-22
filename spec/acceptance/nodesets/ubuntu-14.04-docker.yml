@@ -1,7 +1,6 @@
 ---
 HOSTS:
   ubuntu1404-64-1:
-    masterless: true
     docker_cmd:
     - "/sbin/init"
     image: ubuntu:14.04

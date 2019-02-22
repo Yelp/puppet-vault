@@ -17,4 +17,16 @@ matrix:
     sudo: required
     services: docker
     bundler_args:
-    script: bundle exec rake beaker
+    script: bundle exec rake beaker:ubuntu-14.04-docker
+  - rvm: 2.1.10
+    sudo: required
+    services: docker
+    bundler_args:
+    script: bundle exec rake beaker:ubuntu-16.04-docker
+  - rvm: 2.1.10
+    # Puppetlabs don't package Puppet 4 for >= Bionic
+    env: BEAKER_PUPPET_COLLECTION="puppet5"
+    sudo: required
+    services: docker
+    bundler_args:
+    script: bundle exec rake beaker:ubuntu-18.04-docker

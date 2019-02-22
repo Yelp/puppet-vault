@@ -9,7 +9,7 @@ describe 'vault' do
   end
 
   it 'should start the service' do
-    # Sometimes Vault expects strings instead of booleans, hence the doubly quoted '"true'" below
+    # Sometimes Vault expects strings instead of booleans, hence the quoted 'true' below
     manifest = <<-EOM
     file {'/etc/vault':
       ensure => directory
@@ -17,10 +17,13 @@ describe 'vault' do
     -> class {'vault':
       config_hash => {'disable_mlock' => true},
       backend => {'file' => {'path' => '/tmp/data.vault'}},
-      listener => {'tcp' => {'address' => '127.0.0.1:18200', 'tls_disable' => '"true"'}},
+      listener => {'tcp' => {'address' => '127.0.0.1:18200', 'tls_disable' => 'true'}},
     }
     EOM
     apply_manifest(manifest, :catch_failures => true)
+    # Vault doesn't die fast enough on config errors: the `be_running` below
+    # might think the service is up while it's about to die. Sleep to work around that.
+    expect(command('sleep 1').exit_status).to be_zero
     expect(service('vault')).to be_running
   end
 end

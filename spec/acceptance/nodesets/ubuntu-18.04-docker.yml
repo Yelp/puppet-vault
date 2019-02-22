@@ -1,0 +1,18 @@
+---
+HOSTS:
+  ubuntu1804-64-1:
+    docker_cmd:
+    - "/sbin/init"
+    image: ubuntu:18.04
+    platform: ubuntu-18.04-amd64
+    packaging_platform: ubuntu-18.04-amd64
+    docker_image_commands:
+    - ln -sf ../usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+    - rm -f /usr/sbin/policy-rc.d
+    - systemctl mask getty@tty1.service getty-static.service
+    - apt-get update && apt-get install -y cron locales-all net-tools wget systemd-sysv
+    hypervisor: docker
+    docker_preserve_image: true
+CONFIG:
+  masterless: true
+  type: foss

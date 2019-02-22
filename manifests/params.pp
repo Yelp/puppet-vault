@@ -26,8 +26,10 @@ class vault::params {
   if $::operatingsystem == 'Ubuntu' {
     if versioncmp($::lsbdistrelease, '8.04') < 1 {
       $init_style = 'debian'
-    } else {
+    } elsif versioncmp($::lsbdistrelease, '14.04') < 1  {
       $init_style = 'upstart'
+    } else {  # Use systemd from Xenial (inclusive) on
+      $init_style = 'systemd'
     }
   } elsif $::operatingsystem =~ /Scientific|CentOS|RedHat|OracleLinux/ {
     if versioncmp($::operatingsystemrelease, '7.0') < 0 {
