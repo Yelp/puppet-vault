@@ -47,6 +47,17 @@ describe 'vault' do
     it { should contain_file('/lib/systemd/system/vault.service').with_content(%r{-config /etc/vault foo bar baz\\ baz\\ baz})}
   end
 
+  context 'when config_file is passed' do
+    let(:params) {{
+      :config_file   => ['config_current.json'],
+      :extra_options => ['foo', 'bar', 'baz baz baz'],
+      :init_style    => 'systemd',
+      :backend       => {},
+      :listener      => {},
+    }}
+    it { should contain_file('/lib/systemd/system/vault.service').with_content(%r{-config /etc/vault/config_current.json foo bar baz\\ baz\\ baz})}
+  end
+
   context 'properly escaped shellwords launchd' do
     let(:params) {{
       :extra_options => ['foo', 'bar', 'baz <baz> baz'],
