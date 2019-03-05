@@ -8,7 +8,7 @@ After=basic.target network.target
 User=<%= scope.lookupvar('vault::user') %>
 Group=<%= scope.lookupvar('vault::group') %>
 ExecStart=<%= scope.lookupvar('vault::bin_dir').shellescape %>/vault server \
--config <%=
+  -config <%=
 if scope.lookupvar('vault::config_file').nil? or scope.lookupvar('vault::config_file').to_s == 'undef'
   scope.lookupvar('vault::config_dir').shellescape
 else
