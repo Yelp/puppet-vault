@@ -8,7 +8,12 @@ After=basic.target network.target
 User=<%= scope.lookupvar('vault::user') %>
 Group=<%= scope.lookupvar('vault::group') %>
 ExecStart=<%= scope.lookupvar('vault::bin_dir').shellescape %>/vault server \
-  -config <%= scope.lookupvar('vault::config_dir').shellescape %> <%= scope.lookupvar('vault::extra_options').shelljoin %>
+  -config <%=
+if scope.lookupvar('vault::config_file').nil? or scope.lookupvar('vault::config_file').to_s == 'undef'
+  scope.lookupvar('vault::config_dir').shellescape
+else
+  File.join(scope.lookupvar('vault::config_dir'), scope.lookupvar('vault::config_file')).shellescape
+end %> <%= scope.lookupvar('vault::extra_options').shelljoin %>
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
