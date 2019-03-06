@@ -7,6 +7,7 @@ After=basic.target network.target
 <% require 'shellwords' %>
 User=<%= scope.lookupvar('vault::user') %>
 Group=<%= scope.lookupvar('vault::group') %>
+Environment=GOMAXPROCS=<%= scope.lookupvar("::processorcount") %>
 ExecStart=<%= scope.lookupvar('vault::bin_dir').shellescape %>/vault server \
   -config <%=
 if scope.lookupvar('vault::config_file').nil? or scope.lookupvar('vault::config_file').to_s == 'undef'
