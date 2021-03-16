@@ -8,7 +8,7 @@ end
 group :system_tests do
   gem 'beaker'
   gem 'beaker-docker'
-  gem 'beaker-rspec'
+  gem 'beaker-rspec', '6.2.4'
   gem 'beaker-puppet_install_helper'
 end
 
