@@ -1,7 +1,7 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
 group :tests do
-  gem 'puppetlabs_spec_helper'
+  gem 'puppetlabs_spec_helper', '2.13.1'
   gem 'hiera-puppet-helper'
 end
 
