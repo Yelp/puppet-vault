@@ -144,12 +144,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beaker
+  beaker (> 2.0.0)
   beaker-docker
   beaker-puppet_install_helper
-  beaker-rspec
+  beaker-rspec (>= 5.1.0)
   hiera-puppet-helper
-  puppet (~> 4.5.0)
+  puppet (~> 4.5)
   puppetlabs_spec_helper
 
 BUNDLED WITH
