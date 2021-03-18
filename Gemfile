@@ -6,14 +6,14 @@ group :tests do
 end
 
 group :system_tests do
-  gem 'beaker'
+  gem "beaker", "> 2.0.0"
+  gem "beaker-rspec", ">= 5.1.0"
   gem 'beaker-docker'
-  gem 'beaker-rspec'
   gem 'beaker-puppet_install_helper'
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']
     gem 'puppet', puppetversion, :require => false
 else
-    gem 'puppet', '~> 4.5.0', :require => false
+    gem 'puppet', '~> 4.5', :require => false
 end
