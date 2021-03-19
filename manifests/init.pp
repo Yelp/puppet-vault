@@ -43,6 +43,10 @@
 #   Config file name, relative to `$config_dir`.
 #   If undef (default), Vault will load all `*.json` and `*.hcl` files it finds in `$config_dir`.
 #   This parameter is only available on systemd distros.
+# 
+# [*oom_score*]
+#   Adjusts the oom score to a user set value between -1000 and 1000. 
+#   Ideal to use if you have memory hungry services running alongside vault
 #
 class vault (
   $backend            = undef,
@@ -71,6 +75,7 @@ class vault (
   $service_ensure     = 'running',
   $manage_service     = true,
   $init_style         = $vault::params::init_style,
+  $oom_score          = undef,
 ) inherits vault::params {
 
   $real_download_url    = pick($download_url, "${download_url_base}${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")
