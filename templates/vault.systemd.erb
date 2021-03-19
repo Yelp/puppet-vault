@@ -22,5 +22,6 @@ RestartSec=42s
 <% if !scope.lookupvar('vault::oom_score').nil? or !scope.lookupvar('vault::oom_score').to_s == 'undef' -%>
 OOMScoreAdjust=<%= scope.lookupvar('vault::oom_score') %>
 <% end -%>
+
 [Install]
 WantedBy=multi-user.target
