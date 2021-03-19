@@ -7,7 +7,7 @@ stop on runlevel [06]
 respawn
 respawn limit 10 10
 kill timeout 10
-<% if !scope.lookupvar('vault::oom_score').nil? or !scope.lookupvar('vault::oom_score').to_s == 'undef'%>
+<% if !scope.lookupvar('vault::oom_score').nil? or !scope.lookupvar('vault::oom_score').to_s == 'undef' -%>
 oom score <%= scope.lookupvar('vault::oom_score') %>
 <% end -%>
 
