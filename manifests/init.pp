@@ -76,6 +76,8 @@ class vault (
   $manage_service     = true,
   $init_style         = $vault::params::init_style,
   $oom_score          = undef,
+  $limit_no_file      = undef,
+  $limit_n_proc       = undef,
 ) inherits vault::params {
 
   $real_download_url    = pick($download_url, "${download_url_base}${version}/${package_name}_${version}_${os}_${arch}.${download_extension}")

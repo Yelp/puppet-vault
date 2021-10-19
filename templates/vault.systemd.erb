@@ -19,6 +19,12 @@ ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=on-failure
 RestartSec=42s
+<% if !scope.lookupvar('vault::limit_no_file').nil? or !scope.lookupvar('vault::limit_no_file').to_s == 'undef' -%>
+  LimitNOFILE=<%= scope.lookupvar('vault::limit_no_file') %>
+<% end -%>
+<% if !scope.lookupvar('vault::limit_n_proc').nil? or !scope.lookupvar('vault::limit_n_proc').to_s == 'undef' -%>
+  LimitNPROC=<%= scope.lookupvar('vault::limit_n_proc') %>
+<% end -%>
 <% if !scope.lookupvar('vault::oom_score').nil? or !scope.lookupvar('vault::oom_score').to_s == 'undef' -%>
 OOMScoreAdjust=<%= scope.lookupvar('vault::oom_score') %>
 <% end -%>
