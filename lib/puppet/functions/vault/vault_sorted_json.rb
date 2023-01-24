@@ -7,7 +7,7 @@ require 'json'
 #     sorted_json({'key'=>'value'})
 #
 # Would return: {'key':'value'}
-Puppet::Functions.create_function(:vault_sorted_json) do
+Puppet::Functions.create_function(:'vault::vault_sorted_json') do
     def vault_sorted_json(argument)
         json = argument.delete_if {|key, value| value == :undef }
         return sorted_json(json)
