@@ -31,5 +31,6 @@ Puppet::Functions.create_function(:vault_sorted_json) do
                 return "{" << ret.join(",") << "}";
             else
                 raise Exception("Unable to handle object of type <%s>" % obj.class.to_s)
-      end
+        end
+    end
 end
