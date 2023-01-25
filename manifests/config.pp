@@ -78,7 +78,7 @@ class vault::config(
 
   file { 'vault config.json':
     path    => "${vault::config_dir}/config.json",
-    content => vault_sorted_json($config_hash),
+    content => vault::vault_sorted_json($config_hash),
   }
 
 }
