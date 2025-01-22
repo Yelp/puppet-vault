@@ -3,10 +3,21 @@ require 'spec_helper'
 describe 'vault' do
   RSpec.configure do |c|
     c.default_facts = {
+      :os              => {
+        'family' => 'Debain',
+        'name'   => 'Ubuntu',
+        'distro' => {
+          'release': {
+            'full': '10.04',
+            'major': '10.04',
+          }
+        },
+        'release': {
+          'full': '10.04',
+          'major': '10.04',
+        },
+      },
       :architecture    => 'x86_64',
-      :operatingsystem => 'Ubuntu',
-      :osfamily        => 'Debian',
-      :lsbdistrelease  => '10.04',
       :kernel          => 'Linux',
       :staging_http_get => 'curl'
     }
@@ -102,19 +113,64 @@ describe 'vault' do
   end
 
   context 'on Trusty (14.04)' do
-    let(:facts) {{ :lsbdistrelease => '14.04' }}
+    let(:facts) {{ 
+      :os              => {
+        'family' => 'Debain',
+        'name'   => 'Ubuntu',
+        'distro' => {
+          'release': {
+            'full': '14.04',
+            'major': '14.04',
+          }
+        },
+        'release': {
+          'full': '14.04',
+          'major': '14.04',
+        },
+      }
+    }}
     let(:params) {{ :backend => {}, :listener => {} }}
     it_behaves_like 'upstart'
   end
 
   context 'on Xenial (16.04)' do
-    let(:facts) {{ :lsbdistrelease => '16.04' }}
+    let(:facts) {{ 
+      :os              => {
+        'family' => 'Debain',
+        'name'   => 'Ubuntu',
+        'distro' => {
+          'release': {
+            'full': '16.04',
+            'major': '16.04',
+          }
+        },
+        'release': {
+          'full': '16.04',
+          'major': '16.04',
+        },
+      }
+    }}
     let(:params) {{ :backend => {}, :listener => {} }}
     it_behaves_like 'systemd'
   end
 
   context 'on Bionic (18.04)' do
-    let(:facts) {{ :lsbdistrelease => '18.04' }}
+    let(:facts) {{ 
+      :os              => {
+        'family' => 'Debain',
+        'name'   => 'Ubuntu',
+        'distro' => {
+          'release': {
+            'full': '18.04',
+            'major': '18.04',
+          }
+        },
+        'release': {
+          'full': '18.04',
+          'major': '18.04',
+        },
+      }
+    }}
     let(:params) {{ :backend => {}, :listener => {} }}
     it_behaves_like 'systemd'
   end

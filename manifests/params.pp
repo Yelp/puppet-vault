@@ -24,32 +24,32 @@ class vault::params {
   $os = downcase($::kernel)
 
   if $::operatingsystem == 'Ubuntu' {
-    if versioncmp($::lsbdistrelease, '8.04') < 1 {
+    if versioncmp($facts['os']['distro']['release']['full'], '8.04') < 1 {
       $init_style = 'debian'
-    } elsif versioncmp($::lsbdistrelease, '14.04') < 1  {
+    } elsif versioncmp($facts['os']['distro']['release']['full'], '14.04') < 1  {
       $init_style = 'upstart'
     } else {  # Use systemd from Xenial (inclusive) on
       $init_style = 'systemd'
     }
-  } elsif $::operatingsystem =~ /Scientific|CentOS|RedHat|OracleLinux/ {
-    if versioncmp($::operatingsystemrelease, '7.0') < 0 {
+  } elsif $facts['os']['name'] =~ /Scientific|CentOS|RedHat|OracleLinux/ {
+    if versioncmp($facts['os']['release']['full'], '7.0') < 0 {
       $init_style = 'sysv'
     } else {
       $init_style  = 'systemd'
     }
-  } elsif $::operatingsystem == 'Fedora' {
-    if versioncmp($::operatingsystemrelease, '12') < 0 {
+  } elsif $facts['os']['name'] == 'Fedora' {
+    if versioncmp($facts['os']['release']['full'], '12') < 0 {
       $init_style = 'sysv'
     } else {
       $init_style = 'systemd'
     }
-  } elsif $::operatingsystem == 'Debian' {
+  } elsif $facts['os']['name'] == 'Debian' {
     $init_style = 'debian'
-  } elsif $::operatingsystem == 'SLES' {
+  } elsif $facts['os']['name'] == 'SLES' {
     $init_style = 'sles'
-  } elsif $::operatingsystem == 'Darwin' {
+  } elsif $facts['os']['name'] == 'Darwin' {
     $init_style = 'launchd'
-  } elsif $::operatingsystem == 'Amazon' {
+  } elsif $facts['os']['name'] == 'Amazon' {
     $init_style = 'sysv'
   } else {
     $init_style = undef
